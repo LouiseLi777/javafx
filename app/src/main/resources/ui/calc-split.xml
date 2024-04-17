@@ -8,8 +8,8 @@
 
 
 
-<GridPane xmlns:fx="http://javafx.com/fxml">
-    <!-- fx:controller="edu.duke.ece651.calculator.CalculatorController"> -->
+<GridPane xmlns:fx="http://javafx.com/fxml"
+    fx:controller="edu.duke.ece651.xl435.calculator.CalculatorController">
   <columnConstraints>
         <ColumnConstraints percentWidth="60" />
         <ColumnConstraints percentWidth="20" />
@@ -24,7 +24,7 @@
                   GridPane.rowIndex="0"
                   GridPane.columnIndex="0"
                   GridPane.rowSpan="2"
-                  />
+                  fx:id="numButton"/>
       <ListView fx:id="rpnstack" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
       <Label fx:id="numlabel" text="Current number: " GridPane.rowIndex="1" GridPane.columnIndex="1"/>
       <TextField fx:id="currentNumber" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
