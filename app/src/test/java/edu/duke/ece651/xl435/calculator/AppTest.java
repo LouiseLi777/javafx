@@ -4,9 +4,19 @@
 package edu.duke.ece651.xl435.calculator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.framework.junit5.ApplicationExtension;
+
+import javafx.application.Application;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
+
+@Disabled
+@ExtendWith(ApplicationExtension.class)
 class AppTest {
+
     // @Test void appHasAGreeting() {
     //     App classUnderTest = new App();
     //     assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");

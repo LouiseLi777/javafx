@@ -44,7 +44,8 @@
             GridPane.rowIndex="1"
             GridPane.columnIndex="3"
             GridPane.rowSpan="3"
-            styleClass="expandable"/>
+            styleClass="expandable"
+            onAction="#onEnter"/>
     <Button text="4"
             GridPane.rowIndex="2"
             GridPane.columnIndex="0"

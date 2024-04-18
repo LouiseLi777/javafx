@@ -6,6 +6,9 @@ package edu.duke.ece651.xl435.calculator;
 import java.io.IOException;
 import java.net.URL;
 
+import edu.duke.ece651.xl435.calculator.controller.CalculatorController;
+import edu.duke.ece651.xl435.calculator.controller.NumButtonController;
+import edu.duke.ece651.xl435.calculator.model.RPNStack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import java.util.HashMap;
+
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -50,7 +55,20 @@ public class App extends Application {
         // gp.add(b, 3,1,1,3);
         URL xmlResource = getClass().getResource("/ui/calc-split.xml");
         URL cssResource = getClass().getResource("/ui/calcbuttons.css");
-        GridPane gp = FXMLLoader.load(xmlResource);
+        RPNStack model = new RPNStack();
+        FXMLLoader loader = new FXMLLoader(xmlResource);
+
+
+        
+        HashMap<Class<?>,Object> controllers = new HashMap<>();
+        controllers.put(NumButtonController.class,new NumButtonController(model));
+        controllers.put(CalculatorController.class,new CalculatorController());
+        loader.setControllerFactory((c)->{
+            return controllers.get(c);
+        });
+
+        // GridPane gp = FXMLLoader.load(xmlResource);
+        GridPane gp = loader.load();
         Scene scene = new Scene(gp, 640, 480);
         scene.getStylesheets().add(cssResource.toString());
         stage.setScene(scene);

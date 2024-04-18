@@ -1,4 +1,4 @@
-package edu.duke.ece651.xl435.calculator;
+package edu.duke.ece651.xl435.calculator.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
