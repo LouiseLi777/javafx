@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -70,6 +71,9 @@ public class App extends Application {
         // GridPane gp = FXMLLoader.load(xmlResource);
         GridPane gp = loader.load();
         Scene scene = new Scene(gp, 640, 480);
+        @SuppressWarnings("unchecked")
+        ListView<Double> operands = (ListView<Double>) scene.lookup("#rpnstack");
+        operands.setItems(model.getList());
         scene.getStylesheets().add(cssResource.toString());
         stage.setScene(scene);
         stage.show();

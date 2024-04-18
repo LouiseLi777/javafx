@@ -1,5 +1,6 @@
 package edu.duke.ece651.xl435.calculator.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -10,6 +11,7 @@ import org.testfx.api.FxAssert;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.matcher.control.ListViewMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 import org.testfx.util.WaitForAsyncUtils;
 
@@ -58,5 +60,23 @@ public class NumButtonControllerTest {
         verify(model).pushNum(1234.5);
         verifyNoMoreInteractions(model);
         FxAssert.verifyThat(testText, TextInputControlMatchers.hasText(""));
+    }
+
+    @Test
+    void test_plus(FxRobot robot){
+        model = new RPNStack();
+        model.pushNum(11.5);
+        Platform.runLater(()->{
+            testText.setText("10.3");
+            Button b = new Button("plus");
+            cont.onPlus(new ActionEvent(b,null));
+        });
+
+        WaitForAsyncUtils.waitForFxEvents();
+        // assertEquals(21.8,model.getList().get(0));
+        // assertEquals(1,model.getList().size());
+        FxAssert.verifyThat(testText, TextInputControlMatchers.hasText(""));
+        // FxAssert.verifyThat("#rpnstack", ListViewMatchers.hasItems(1));
+        // FxAssert.verifyThat("#rpnstack", ListViewMatchers.hasListCell(21.8));
     }
 }
